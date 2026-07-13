@@ -70,3 +70,19 @@ To reset the database: `docker compose down -v && bin/start`.
 ## Online demo
 
 See the repository description for the demo URL.
+
+### Deploying to Railway
+
+Railway builds the `Dockerfile` directly (it does not use docker-compose):
+
+1. **New Project → Deploy from GitHub repo** → select this repo.
+2. **Create → Database → Add MySQL** in the same project.
+3. On the app service, add variables (references resolve via Railway's
+   private network):
+   `DB_HOST=${{MySQL.MYSQLHOST}}`, `DB_PORT=${{MySQL.MYSQLPORT}}`,
+   `DB_NAME=${{MySQL.MYSQLDATABASE}}`, `DB_USER=${{MySQL.MYSQLUSER}}`,
+   `DB_PASS=${{MySQL.MYSQLPASSWORD}}`
+4. Seed the schema: open the MySQL service's **Data/Query** tab and run the
+   contents of `db/init.sql` (Railway's managed MySQL doesn't run
+   `docker-entrypoint-initdb.d`).
+5. App service → **Settings → Networking → Generate Domain**, target port **80**.

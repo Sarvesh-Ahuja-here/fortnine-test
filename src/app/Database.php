@@ -10,8 +10,9 @@ final class Database
     {
         if (self::$pdo === null) {
             $dsn = sprintf(
-                'mysql:host=%s;dbname=%s;charset=utf8mb4',
+                'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',
                 getenv('DB_HOST') ?: 'db',
+                getenv('DB_PORT') ?: '3306',
                 getenv('DB_NAME') ?: 'cart'
             );
 
