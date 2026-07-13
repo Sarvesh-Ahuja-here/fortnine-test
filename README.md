@@ -69,7 +69,8 @@ To reset the database: `docker compose down -v && bin/start`.
 
 ## Online demo
 
-See the repository description for the demo URL.
+**https://fortnine-test-production.up.railway.app** — hosted on Railway
+(app built from this repo's `Dockerfile` + a managed MySQL 8 instance).
 
 ### Deploying to Railway
 
